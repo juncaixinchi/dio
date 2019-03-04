@@ -510,6 +510,7 @@ class Dio {
       // If Byte Array
       if (options.data is List<int>) {
         bytes = options.data;
+        _setHeaders(options, request);
       } else {
         // Call request transformer.
         String _data = await transformer.transformRequest(options);
