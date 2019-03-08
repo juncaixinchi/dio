@@ -254,13 +254,17 @@ class Dio {
         }
       },
       onDone: () {
-        raf.closeSync();
+        try {
+          raf.closeSync();
+        } catch (error) {}
         response.headers = response.data.headers;
         completer.complete(response);
       },
       onError: (e) {
-        raf.closeSync();
-        file.deleteSync();
+        try {
+          raf.closeSync();
+          file.deleteSync();
+        } catch (error) {}
         completer.completeError(_assureDioError(e));
       },
       cancelOnError: true,
