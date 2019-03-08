@@ -242,6 +242,7 @@ class Dio {
         // Check if cancelled.
         if (cancelToken != null && cancelToken.cancelError != null) {
           httpClient.close(force: true);
+          raf.closeSync();
           return;
         }
         // Write file.
